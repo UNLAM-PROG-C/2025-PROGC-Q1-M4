@@ -57,8 +57,7 @@ public class MansionDercetoMonitor {
                 e.printStackTrace();
             }
         }
-
-        // Esperar a que terminen todas las camaras
+        
         for (Process proceso : procesos) {
             try {
                 proceso.waitFor();
@@ -81,7 +80,7 @@ public class MansionDercetoMonitor {
             } catch (IOException e) {
                 System.err.println("No se pudo leer el archivo: " + file);
             }
-            System.out.println(); // Espacio entre logs
+            System.out.println(); 
         }
 
         System.out.println("Monitoreo completo.");

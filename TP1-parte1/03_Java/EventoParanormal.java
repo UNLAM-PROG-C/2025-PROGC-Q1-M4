@@ -11,11 +11,11 @@ public class EventoParanormal {
     };
 
     private static final double[] probabilidades = {
-        0.5,  // Sin actividad (50%)
-        0.7,  // Movimiento detectado (20%)
-        0.8,  // Anomalía térmica (10%)
-        0.9,  // Sombra extraña (10%)
-        1.0   // Ruido detectado (10%)
+        0.5,
+        0.7,
+        0.8,
+        0.9,
+        1.0 
     };
 
     private static final Random random = new Random();
@@ -27,7 +27,7 @@ public class EventoParanormal {
                 return eventos[i];
             }
         }
-        return eventos[0]; // fallback
+        return eventos[0];
     }
 
     public static boolean esParanormal(String evento) {
