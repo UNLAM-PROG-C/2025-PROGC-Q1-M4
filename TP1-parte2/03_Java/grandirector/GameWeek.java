@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 
-public class GameWeek//TestComment
+public class GameWeek
 {
 
     private final String gameWeekNumber;
