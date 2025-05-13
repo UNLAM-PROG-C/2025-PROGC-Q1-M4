@@ -1,0 +1,20 @@
+Boca Juniors,90
+River Plate,88
+San Lorenzo,85
+Ferro,80
+Huracan,78
+Velez,77
+Estudiantes (LP),75
+Belgrano,74
+Lanus,74
+Talleres (C),72
+Dep Español,70
+San Martín (T),68
+Dep Mandiyu (C),68
+Rosario Central,67
+Independiente,66
+Racing Club,65
+Gimnasia (LP),64
+Platense,63
+Argentinos,62
+Newells,60
