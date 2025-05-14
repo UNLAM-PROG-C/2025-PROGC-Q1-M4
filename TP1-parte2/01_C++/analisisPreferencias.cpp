@@ -79,7 +79,8 @@ int read_views(const char* filename, View views[])
                       views[total_views].user_name,
                       views[total_views].title,
                       views[total_views].type,
-                      views[total_views].genre);
+                      views[total_views].genre
+              );
 
         total_views++;
     }
@@ -211,8 +212,10 @@ void* analyze_user(void* arg)
 {
     Preference* preferenceUser = (Preference*)arg;
 
-    int genre_counts[MAX_GENRE] = {0};
-    int type_count[2] = {0};
+    int genre_counts[MAX_GENRE] = {0
+                                  };
+    int type_count[2] = {0
+                        };
     char genres[MAX_GENRE][MAX_FIELD];
     int unique_genres = 0;
 
