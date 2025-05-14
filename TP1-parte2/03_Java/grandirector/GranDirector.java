@@ -2,15 +2,20 @@ package grandirector;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class GranDirector
 {
-    public static void main(String[] args)
+    public static void main(String[] args) throws FileNotFoundException
     {
-        List<Team> teams = readTeamsFile("./resources/teamsData.txt");
+        if(args[0] == null )
+            throw new FileNotFoundException();
+        String fileName = args[0];
+
+        List<Team> teams = readTeamsFile(fileName);
 
         Fixture fixture = new Fixture(teams);
         System.out.println(fixture);

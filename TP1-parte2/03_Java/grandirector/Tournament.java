@@ -3,6 +3,7 @@ package grandirector;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
 
 public class Tournament
 {
@@ -22,7 +23,7 @@ public class Tournament
         System.out.format("+---+-------------------+-----+----+----+----+----+----+----+-----+%n");
         System.out.format("| # | Equipo            | Pts | PJ | PG | PE | PP | GF | GC | DIF |%n");
         System.out.format("+---+-------------------+-----+----+----+----+----+----+----+-----+%n");
-        List<Team> teamsInOrder = this.teamsStats.keySet().stream().sorted((o1, o2) -> this.teamsStats.get(o2).compareTo(this.teamsStats.get(o1))).toList();
+        List<Team> teamsInOrder = this.teamsStats.keySet().stream().sorted((o1, o2) -> this.teamsStats.get(o2).compareTo(this.teamsStats.get(o1))).collect(Collectors.toList());
 
         for (int i = 0; i < teamsInOrder.size(); i++)
         {
