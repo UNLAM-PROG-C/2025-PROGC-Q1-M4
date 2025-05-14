@@ -15,7 +15,7 @@
 #define NOT_EXIST_GENRE 3
 #define MAX_VIEW 1000
 #define MAX_USER_VIEW 200
-
+/// cambio 
 typedef struct {
     int user_id;
     char user_name[MAX_FIELD];
