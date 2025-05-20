@@ -289,8 +289,8 @@ int main(int argc, char* argv[])
     int user_count = logUserViews(all_views, total_views, users);
 
     
-    Preference preferenceUser[MAX_USERS];
-    pthread_t threads[MAX_USERS];
+    Preference preferenceUser[user_count];
+    pthread_t threads[user_count];
     for (int i = 0; i < user_count; i++) 
     {
         preferenceUser[i].user = &users[i];
@@ -303,7 +303,7 @@ int main(int argc, char* argv[])
 
     for (int i = 0; i < user_count; i++) 
     {
-        pthread_join(threads[i], NULL);
+        ///pthread_join(threads[i], NULL);
     }
 
     if (write_json("preferencias.json", user_count, preferenceUser) == ERR_FILE) 
