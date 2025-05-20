@@ -15,15 +15,18 @@ public class ShipmentsAdministrator
     ExecutorService executor;
     CountDownLatch latch;
 
-    public static ShipmentsAdministrator getShipmentsAdministrator(List<Truck> trucks, List<Travel> travels){
-        if (shipmentsAdministrator == null){
+    public static ShipmentsAdministrator getShipmentsAdministrator(List<Truck> trucks, List<Travel> travels)
+    {
+        if (shipmentsAdministrator == null)
+        {
             shipmentsAdministrator = new ShipmentsAdministrator(trucks, travels);
         }
 
         return shipmentsAdministrator;
     }
 
-    private ShipmentsAdministrator(List<Truck> trucks, List<Travel> travels){
+    private ShipmentsAdministrator(List<Truck> trucks, List<Travel> travels)
+    {
         this.trucks = trucks;
         this.travels = travels;
         this.executor = Executors.newFixedThreadPool(trucks.size());
@@ -34,8 +37,9 @@ public class ShipmentsAdministrator
     public void startAssigningTravels()
     {
         long initialTime = System.currentTimeMillis();
-        while (!travels.isEmpty()){
-            if(isAnyAvailableTruck())
+        while (!travels.isEmpty())
+        {
+            if (isAnyAvailableTruck())
             {
                 Truck truck = findAvailableTruck();
                 this.assignTravelToTruck(truck);
@@ -49,16 +53,18 @@ public class ShipmentsAdministrator
         this.printTotalDays(initialTime, System.currentTimeMillis());
     }
 
-    private void printTotalDays(long startTime, long finishTime){
-        long hours = (finishTime - startTime)/Constants.SIMULATION_DELAY;
+    private void printTotalDays(long startTime, long finishTime)
+    {
+        long hours = (finishTime - startTime) / Constants.SIMULATION_DELAY;
         Duration duration = Duration.ofHours(hours);
         long days = duration.toDays();
-        System.out.println("Tiempo total: " + days +" dias");
+        System.out.println("Tiempo total: " + days + " dias");
 
 
     }
 
-    private void waitForTravelsToFinish(){
+    private void waitForTravelsToFinish()
+    {
         System.out.println("Esperando a que terminen los viajes en curso");
         try
         {
@@ -71,7 +77,8 @@ public class ShipmentsAdministrator
         System.out.println("Todos los viajes finalizados");
     }
 
-    private boolean isAnyTravelInCourse(){
+    private boolean isAnyTravelInCourse()
+    {
         return this.trucks.stream().anyMatch(Truck::isTraveling);
     }
 
@@ -86,11 +93,13 @@ public class ShipmentsAdministrator
         });
     }
 
-    private boolean isAnyAvailableTruck(){
+    private boolean isAnyAvailableTruck()
+    {
         return !this.trucks.stream().allMatch(Truck::isTraveling);
     }
 
-    private Truck findAvailableTruck(){
+    private Truck findAvailableTruck()
+    {
         Optional<Truck> optTruck = trucks.stream().filter((t) -> !t.isTraveling()).findFirst();
         return optTruck.orElse(null);
     }

@@ -24,11 +24,11 @@ public class Truck implements Runnable
 
     public void goToNextStop() throws InterruptedException
     {
-        System.out.println("Camion "+this.number+" sale de "+this.currentPlant.getName());
-        int travelTime = Math.round(this.driver.getTravelTime()* Constants.SIMULATION_DELAY);
+        System.out.println("Camion " + this.number + " sale de " + this.currentPlant.getName());
+        int travelTime = Math.round(this.driver.getTravelTime() * Constants.SIMULATION_DELAY);
         Thread.sleep(travelTime);
         this.currentPlant = travel.getNextStop(currentPlant);
-        System.out.format("Camion "+this.number+" llega a "+ currentPlant.getName()+ "(%.2f hs de viaje)%n",travelTime/(float)Constants.SIMULATION_DELAY);
+        System.out.format("Camion " + this.number + " llega a " + currentPlant.getName() + "(%.2f hs de viaje)%n", travelTime / (float) Constants.SIMULATION_DELAY);
 
     }
 
@@ -55,20 +55,24 @@ public class Truck implements Runnable
     public void run()
     {
         System.out.println(this + " iniciando viaje");
-        try{
+        try
+        {
             this.currentPlant.action(this);
-            while (travel.getNextStop(this.currentPlant) != null){
+            while (travel.getNextStop(this.currentPlant) != null)
+            {
                 this.goToNextStop();
                 this.currentPlant.action(this);
             }
             System.out.println(this + " finalizo viaje");
             this.travel = null;
-        }catch (InterruptedException e){
-            System.out.println("Error en hilo de camion "+this.number);
+        } catch (InterruptedException e)
+        {
+            System.out.println("Error en hilo de camion " + this.number);
         }
     }
 
-    public boolean isTraveling(){
+    public boolean isTraveling()
+    {
         return travel != null;
     }
 

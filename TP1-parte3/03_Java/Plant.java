@@ -18,7 +18,8 @@ public abstract class Plant
 
     public void action(Truck truck) throws InterruptedException
     {
-        if(truck.isLoaded()){
+        if (truck.isLoaded())
+        {
             this.unloadTruck(truck);
         }
         this.loadTruck(truck);
@@ -26,22 +27,24 @@ public abstract class Plant
 
     private void unloadTruck(Truck truck) throws InterruptedException
     {
-        if(!this.unloadingSemaphore.tryAcquire(0, TimeUnit.SECONDS)){
-            System.out.println(truck + " esperando para descargar " +this.unloadCommodity + " en "+ this.name);
+        if (!this.unloadingSemaphore.tryAcquire(0, TimeUnit.SECONDS))
+        {
+            System.out.println(truck + " esperando para descargar " + this.unloadCommodity + " en " + this.name);
             this.unloadingSemaphore.acquire();
         }
-        System.out.println(truck +" descargando "+this.unloadCommodity +" en "+this.name);
+        System.out.println(truck + " descargando " + this.unloadCommodity + " en " + this.name);
         truck.unload();
         this.unloadingSemaphore.release();
     }
 
     private void loadTruck(Truck truck) throws InterruptedException
     {
-        if(!this.loadingSemaphore.tryAcquire(0, TimeUnit.SECONDS)){
-            System.out.println(truck + " esperando para cargar " +this.loadCommodity + " en "+ this.name);
+        if (!this.loadingSemaphore.tryAcquire(0, TimeUnit.SECONDS))
+        {
+            System.out.println(truck + " esperando para cargar " + this.loadCommodity + " en " + this.name);
             this.loadingSemaphore.acquire();
         }
-        System.out.println(truck +" cargando "+this.loadCommodity +" en "+this.name);
+        System.out.println(truck + " cargando " + this.loadCommodity + " en " + this.name);
         truck.load();
         this.loadingSemaphore.release();
     }

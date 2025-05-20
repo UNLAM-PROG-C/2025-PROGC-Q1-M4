@@ -7,9 +7,10 @@ public class Driver
 
     private final float travelTime;
 
-    public Driver(){
+    public Driver()
+    {
         Random random = new Random();
-        this.travelTime = (random.nextFloat()*(MAX_TRAVEL_TIME-MIN_TRAVEL_TIME))+MIN_TRAVEL_TIME;
+        this.travelTime = (random.nextFloat() * (MAX_TRAVEL_TIME - MIN_TRAVEL_TIME)) + MIN_TRAVEL_TIME;
     }
 
     public float getTravelTime()

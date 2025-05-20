@@ -22,7 +22,8 @@ public class CargaCriolla
 
     }
 
-    public static List<Truck> createTrucks(int trucksAmount){
+    public static List<Truck> createTrucks(int trucksAmount)
+    {
         List<Truck> trucks = new ArrayList<>();
 
         for (int i = 1; i <= trucksAmount; i++)
@@ -32,11 +33,13 @@ public class CargaCriolla
         return trucks;
     }
 
-    public static List<Travel> createTravels(int travelsAmount){
+    public static List<Travel> createTravels(int travelsAmount)
+    {
         List<Plant> plants = List.of(new BsAsPlant(), new FernandezPlant(), new BsAsPlant());
         List<Travel> travels = new ArrayList<>();
 
-        for(int i = 0; i<travelsAmount; i++ ){
+        for (int i = 0; i < travelsAmount; i++)
+        {
             travels.add(new Travel(plants));
         }
         return travels;
