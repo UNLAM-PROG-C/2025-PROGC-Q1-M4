@@ -212,10 +212,12 @@ void* analyze_user(void* arg)
 {
     Preference* preferenceUser = (Preference*)arg;
 
-    int genre_counts[MAX_GENRE] = {0
-                                  };
-    int type_count[2] = {0
-                        };
+    int genre_counts[MAX_GENRE] = 
+    {0
+    };
+    int type_count[2] = 
+    {0
+    };
     char genres[MAX_GENRE][MAX_FIELD];
     int unique_genres = 0;
 
