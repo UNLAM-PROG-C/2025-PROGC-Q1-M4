@@ -15,17 +15,20 @@ class TallerMecanico
 private:
     const int N;
 
-    counting_semaphore<6> espacioPlaya{6};
-    counting_semaphore<6> autosParaInspeccion{0};
-    counting_semaphore<3> espacioFosa{3};
-    counting_semaphore<6> autosParaReparar{0};
-    counting_semaphore<2> espacioServicio{2};
-    counting_semaphore<1> espacioLavado{1};
-    counting_semaphore<1> autoEnReparacion{1};
-    counting_semaphore<1> autoEnInspeccion{1};
+    counting_semaphore<6> espacioPlaya {6};
+    counting_semaphore<6> autosParaInspeccion {0};
+    counting_semaphore<3> espacioFosa {3};
+    counting_semaphore<6> autosParaReparar {0};
+    counting_semaphore<2> espacioServicio {2};
+    counting_semaphore<1> espacioLavado {1};
+    counting_semaphore<1> autoEnReparacion {1};
+    counting_semaphore<1> autoEnInspeccion {1};
 
 public:
-    TallerMecanico(int n) : N(n) {}
+    TallerMecanico(int n) : N(n) 
+    {
+
+    }
 
     void richard(int id) 
     {
