@@ -10,7 +10,8 @@ using namespace std;
 
 mutex cout_mutex;
 
-class TallerMecanico {
+class TallerMecanico 
+{
 private:
     const int N;
 
@@ -26,7 +27,8 @@ private:
 public:
     TallerMecanico(int n) : N(n) {}
 
-    void richard(int id) {
+    void richard(int id) 
+    {
         espacioPlaya.acquire();
         {
             lock_guard<mutex> lock(cout_mutex);
@@ -36,7 +38,8 @@ public:
         autosParaInspeccion.release();
     }
 
-    void aaron(int id) {
+    void aaron(int id) 
+    {
         autosParaInspeccion.acquire();
         autoEnInspeccion.acquire();
         {
@@ -49,7 +52,8 @@ public:
         autosParaReparar.release();
     }
 
-    void charles(int id) {
+    void charles(int id) 
+    {
         autosParaReparar.acquire();
         autoEnReparacion.acquire();
         {
@@ -62,7 +66,8 @@ public:
         espacioFosa.release();
     }
 
-    void ayudante(int id) {
+    void ayudante(int id) 
+    {
         {
             lock_guard<mutex> lock(cout_mutex);
             cout << "[Auto " << id << "] Ayudante lo traslada a zona de servicio y cambia el aceite." << endl;
@@ -81,19 +86,23 @@ public:
         espacioPlaya.release();
     }
 
-    void ingresarAuto(int id) {
+    void ingresarAuto(int id) 
+    {
         richard(id);
         aaron(id);
         charles(id);
         ayudante(id);
     }
 
-    void iniciar() {
+    void iniciar() 
+    {
         vector<thread> threads;
-        for (int i = 0; i < N; ++i) {
+        for (int i = 0; i < N; ++i) 
+        {
             threads.emplace_back(&TallerMecanico::ingresarAuto, this, i + 1);
         }
-        for (auto& t : threads) {
+        for (auto& t : threads) 
+        {
             t.join();
         }
         {
@@ -104,8 +113,10 @@ public:
 };
 
 
-int main(int argc, char* argv[]) {
-    if (argc != 2) {
+int main(int argc, char* argv[]) 
+{
+    if (argc != 2) 
+    {
         cerr << "Uso: " << argv[0] << " <N_AUTOS>\n";
         return 1;
     }
