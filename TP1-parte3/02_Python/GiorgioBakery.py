@@ -169,7 +169,7 @@ def salePerson(NCustomer: int):
 
 def main():
     """Función principal que maneja los hilos y los clientes."""
-    NCustomer = 3  # Número de clientes simulados
+    NCustomer = 3 
 
     hilo_master = threading.Thread(target=bakerMaster, daemon=True)
     hilo_junior = threading.Thread(target=bakerJunior, daemon=True)
@@ -178,7 +178,7 @@ def main():
     hilo_packer2 = threading.Thread(target=packer2, daemon=True)
     hilo_sale = threading.Thread(target=salePerson, daemon=True, args=(NCustomer,))
 
-    # Iniciar hilos
+    
     hilo_master.start()
     hilo_junior.start()
     hilo_baked.start()
