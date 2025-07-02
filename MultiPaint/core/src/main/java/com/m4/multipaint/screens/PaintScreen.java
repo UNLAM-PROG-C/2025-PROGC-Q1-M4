@@ -48,7 +48,7 @@ public class PaintScreen implements Screen
 
         stage.addActor(new UserInterface(localUser));
 
-        serverConnection.start(); //Lanzo hilo para escuchar desde el server
+        serverConnection.start();
     }
 
     private void renderShapePreview()
@@ -103,7 +103,6 @@ public class PaintScreen implements Screen
         session.getCanvas().render(game.batch);
         game.batch.end();
 
-        // Renderizar previsualización de forma
         renderShapePreview();
 
         stage.act(delta);
@@ -146,7 +145,6 @@ public class PaintScreen implements Screen
             }
         }
 
-        // Detectar cuando se suelta el botón
         if (wasLeftButtonPressed && !isLeftButtonPressed && shapeStartPosition != null)
         {
             Vector2 current = new Vector2(Gdx.input.getX(), Gdx.input.getY());

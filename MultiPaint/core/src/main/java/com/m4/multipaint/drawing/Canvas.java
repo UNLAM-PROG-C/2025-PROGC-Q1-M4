@@ -36,7 +36,7 @@ public class Canvas
         int stepY = startY < endY ? 1 : -1;
         int error = deltaX - deltaY;
 
-        pixmap.setColor(color); //TODO: Chequear sincronziacion, posible race condition
+        pixmap.setColor(color);
         while (true)
         {
             pixmap.fillCircle(startX, startY, size);

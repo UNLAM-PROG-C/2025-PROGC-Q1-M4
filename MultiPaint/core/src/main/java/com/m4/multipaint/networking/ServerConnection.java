@@ -38,7 +38,7 @@ public class ServerConnection extends Thread
             while (!socket.isConnected() && attempts < maxAttempts)
             {
                 Gdx.app.log("NETWORK", "Intentando conectar... intento #" + (attempts + 1));
-                Thread.sleep(500); // Esperar medio segundo antes de intentar de nuevo
+                Thread.sleep(500);
                 attempts++;
             }
 

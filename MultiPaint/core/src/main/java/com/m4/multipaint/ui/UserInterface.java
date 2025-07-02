@@ -25,8 +25,8 @@ public class UserInterface extends Table implements Disposable
         setupUI();
 
         this.setWidth(Constants.SCREEN_RESOLUTION_W);
-        this.setHeight(Constants.UI_HEIGHT); // o la altura que necesites
-        this.setPosition(0, 0); // Abajo de la pantalla
+        this.setHeight(Constants.UI_HEIGHT);
+        this.setPosition(0, 0);
     }
 
     private void setupUI()
