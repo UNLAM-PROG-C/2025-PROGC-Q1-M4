@@ -196,7 +196,6 @@ public class MainMenuScreen implements Screen
 
     private boolean isValidIp(String ip)
     {
-        //https://stackoverflow.com/questions/5284147/validating-ipv4-addresses-with-regexp
         return ip.matches(Constants.IP_VALIDATION_REGEX);
     }
 

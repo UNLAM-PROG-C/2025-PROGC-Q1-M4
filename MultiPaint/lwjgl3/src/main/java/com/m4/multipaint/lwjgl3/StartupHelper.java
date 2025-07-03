@@ -1,18 +1,3 @@
-/*
- * Copyright 2020 damios
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at:
- * https://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-//Note, the above license and copyright applies to this file only.
 
 package com.m4.multipaint.lwjgl3;
 
@@ -64,8 +49,8 @@ public class StartupHelper
      *
      * <pre><code>
      * public static void main(String... args) {
-     * 	if (StartupHelper.startNewJvmIfRequired(true)) return; // This handles macOS support and helps on Windows.
-     * 	// after this is the actual main method code
+     * 	if (StartupHelper.startNewJvmIfRequired(true)) return;
+     *
      * }
      * </code></pre>
      *
@@ -82,14 +67,8 @@ public class StartupHelper
         {
             if (osName.contains("windows"))
             {
-// Here, we are trying to work around an issue with how LWJGL3 loads its extracted .dll files.
-// By default, LWJGL3 extracts to the directory specified by "java.io.tmpdir", which is usually the user's home.
-// If the user's name has non-ASCII (or some non-alphanumeric) characters in it, that would fail.
-// By extracting to the relevant "ProgramData" folder, which is usually "C:\ProgramData", we avoid this.
-// We also temporarily change the "user.name" property to one without any chars that would be invalid.
-// We revert our changes immediately after loading LWJGL3 natives.
                 String programData = System.getenv("ProgramData");
-                if (programData == null) programData = "C:\\Temp\\"; // if ProgramData isn't set, try some fallback.
+                if (programData == null) programData = "C:\\Temp\\";
                 String prevTmpDir = System.getProperty("java.io.tmpdir", programData);
                 String prevUser = System.getProperty("user.name", "libGDX_User");
                 System.setProperty("java.io.tmpdir", programData + "/libGDX-temp");
@@ -101,13 +80,11 @@ public class StartupHelper
             return false;
         }
 
-        // There is no need for -XstartOnFirstThread on Graal native image
         if (!System.getProperty("org.graalvm.nativeimage.imagecode", "").isEmpty())
         {
             return false;
         }
 
-        // Checks if we are already on the main thread, such as from running via Construo.
         long objc_msgSend = ObjCRuntime.getLibrary().getFunctionAddress("objc_msgSend");
         long NSThread = objc_getClass("NSThread");
         long currentThread = invokePPP(NSThread, sel_getUid("currentThread"), objc_msgSend);
@@ -116,14 +93,11 @@ public class StartupHelper
 
         long pid = LibC.getpid();
 
-        // check whether -XstartOnFirstThread is enabled
         if ("1".equals(System.getenv("JAVA_STARTED_ON_FIRST_THREAD_" + pid)))
         {
             return false;
         }
 
-        // check whether the JVM was previously restarted
-        // avoids looping, but most certainly leads to a crash
         if ("true".equals(System.getProperty(JVM_RESTARTED_ARG)))
         {
             System.err.println(
@@ -131,13 +105,10 @@ public class StartupHelper
             return false;
         }
 
-        // Restart the JVM with -XstartOnFirstThread
         ArrayList<String> jvmArgs = new ArrayList<>();
         String separator = System.getProperty("file.separator", "/");
-        // The following line is used assuming you target Java 8, the minimum for LWJGL3.
+
         String javaExecPath = System.getProperty("java.home") + separator + "bin" + separator + "java";
-        // If targeting Java 9 or higher, you could use the following instead of the above line:
-        //String javaExecPath = ProcessHandle.current().info().command().orElseThrow();
 
         if (!(new File(javaExecPath)).exists())
         {
@@ -207,8 +178,8 @@ public class StartupHelper
      *
      * <pre>
      * public static void main(String... args) {
-     * 	if (StartupHelper.startNewJvmIfRequired()) return; // This handles macOS support and helps on Windows.
-     * 	// the actual main method code
+     * 	if (StartupHelper.startNewJvmIfRequired()) return;
+     *
      * }
      * </pre>
      *

@@ -58,12 +58,10 @@ public class PaintScreen implements Screen
             Vector2 currentPos = new Vector2(Gdx.input.getX(), Gdx.input.getY());
             game.viewport.unproject(currentPos);
 
-            // Usar ShapeRenderer para dibujar la previsualización
             game.shapeRenderer.setProjectionMatrix(game.viewport.getCamera().combined);
             game.shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
             game.shapeRenderer.setColor(localUser.getColor().r, localUser.getColor().g,
-                localUser.getColor().b, 0.5f); // Semi-transparente
-
+                localUser.getColor().b, 0.5f);
             switch (localUser.getCurrentTool())
             {
                 case LINE:
@@ -188,7 +186,6 @@ public class PaintScreen implements Screen
         int minY = (int) Math.min(start.y, end.y);
         int maxY = (int) Math.max(start.y, end.y);
 
-        // Dibujar los cuatro lados del rectángulo
         DrawAction topSide = new DrawAction(localUser.getColor(), localUser.getBrushSize(), minX, maxY, maxX, maxY);
         DrawAction bottomSide = new DrawAction(localUser.getColor(), localUser.getBrushSize(), minX, minY, maxX, minY);
         DrawAction leftSide = new DrawAction(localUser.getColor(), localUser.getBrushSize(), minX, minY, minX, maxY);
@@ -240,7 +237,6 @@ public class PaintScreen implements Screen
         int centerY = (int) start.y;
         int radius = (int) start.dst(end);
 
-        // Aproximar círculo con múltiples líneas
         int segments = Math.max(16, radius / 2);
         Vector2 prevPoint = null;
 
@@ -272,11 +268,9 @@ public class PaintScreen implements Screen
         Canvas oldCanvas = session.getCanvas();
         Canvas newCanvas = new Canvas(width, height);
 
-        // Obtener dimensiones del pixmap del canvas anterior
         int oldWidth = oldCanvas.getPixmap().getWidth();
         int oldHeight = oldCanvas.getPixmap().getHeight();
 
-        // Dibujar el canvas anterior escalado al nuevo tamaño
         newCanvas.getPixmap().drawPixmap(oldCanvas.getPixmap(),
             0, 0, oldWidth, oldHeight,
             0, 0, width, height);

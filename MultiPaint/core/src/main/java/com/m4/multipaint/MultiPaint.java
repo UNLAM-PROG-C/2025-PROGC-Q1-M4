@@ -30,7 +30,7 @@ public class MultiPaint extends Game
 
     public void render()
     {
-        super.render(); // important!
+        super.render();
     }
 
     public void dispose()
